@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.beixi</groupId><!--项目组织id-->
+  <artifactId>rr</artifactId><!--项目唯一标识符（通常是项目名）-->
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>rr Maven Webapp</name><!--项目名称-->
+  <url>http://maven.apache.org</url><!--项目主页 -->
+
+  <dependencies>
+    <!-- 1、mysql驱动-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.13</version>
+      <!-- 作用：提供Java程序连接MySQL数据库的驱动类，实现数据库交互（如JDBC操作）。
+          没有它，Java代码无法识别MySQL的连接协议，无法执行SQL语句。 -->
+    </dependency>
+    <!-- 2、druid连接池-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.0.9</version>
+      <!-- 作用：管理数据库连接的工具，避免频繁创建/关闭连接导致的性能损耗。
+           功能：连接池管理、监控SQL执行、防SQL注入等，是阿里开源的高性能连接池。 -->
+    </dependency>
+    <!-- 3. Jakarta Servlet API（Servlet规范） -->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version>
+      <scope>provided</scope><!-- 作用域：provided表示该依赖由服务器（如Tomcat）提供，打包时不包含 -->
+      <!-- 作用：提供Servlet开发的核心API（如HttpServlet、HttpServletRequest等类），
+           是Java Web开发的基础，用于处理HTTP请求和响应。
+           注意：版本5.0.0对应Servlet 5.0规范，适用于Tomcat 10+（使用Jakarta命名空间）。 -->
+    </dependency>
+    <!-- 4. Lombok工具 -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+      <scope>compile</scope><!-- 作用域：编译期有效，打包时不包含（运行时不需要） -->
+      <!-- 作用：通过注解简化Java类的代码（如@Data、@Getter、@Setter），
+           自动生成getter/setter、toString、构造方法等，减少重复代码。
+           使用前需在IDE中安装Lombok插件，否则会提示找不到方法。 -->
+    </dependency>
+    <!-- 5. JSTL标准标签库（规范） -->
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-spec</artifactId>
+      <version>1.2.5</version>
+      <!-- 作用：JSTL（JSP标准标签库）的规范定义，包含标签的接口和语法规则，
+           用于在JSP中使用<c:if>、<c:forEach>等标签（替代Java脚本，简化页面逻辑）。 -->
+    </dependency>
+    <!-- 6. JSTL标准标签库（实现） -->
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-impl</artifactId>
+      <version>1.2.5</version>
+      <!-- 作用：JSTL规范的具体实现类，提供标签的实际功能（如循环、条件判断的逻辑），
+           必须与规范依赖配合使用，否则JSP中无法识别JSTL标签。 -->
+    </dependency>
+    <!-- 7. Jakarta JSTL实现（适用于Jakarta EE环境） -->
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>2.0.0</version>
+      <!-- 作用：另一个JSTL的实现，适用于使用Jakarta命名空间的环境（如Tomcat 10+），
+         与上面的taglibs-standard-impl功能类似，可能存在重复引入（建议保留一个即可）。 -->
+    </dependency>
+    <!--    8、引入jackson库，用来将对象转换为JSON格式-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.13.0</version> <!-- 版本号可根据实际情况选择 -->
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>rr</finalName>
+  </build>
+</project>
